@@ -8,8 +8,10 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 import Sidebar from './Sidebar/Sidebar';
 import { Box } from '@mui/material';
-import Report from '../pages/Report';
+import Report from '../pages/Report/Report';
+
 import BaseImage from './BaseImage/BaseImage';
+import { routes } from './routes';
 
 export default function App() {
 
@@ -21,8 +23,16 @@ export default function App() {
         <Sidebar />
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <Routes>
-            <Route exact path="/report/:id" element={<Report />} />
+            {routes.map((route) =>
+              <Route
+                exact
+                key={route.url}
+                path={route.url}
+                element={<route.component title={route.title} {...(route.props || {})} />}
+              />
+            )}
 
+            <Route exact path="/report/:id" element={<Report />} />
             <Route path="*" element={<Navigate to="/report/1" />} />
           </Routes>
 

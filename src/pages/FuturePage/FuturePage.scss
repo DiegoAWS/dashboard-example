@@ -1,0 +1,28 @@
+.futurePageContainer {
+    .titleSection{
+        width: fit-content;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: normal;
+        padding: 0 8px;
+        border-right: 3px solid red;
+    }
+    
+    .imageContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60vh;
+        margin-top: 20px;
+
+        .imageHolder {
+            background-image: url('../../assets/images/webUnderConstruction.jpeg');
+            height: 100%;
+            width: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 30px;
+        }
+    }
+}
