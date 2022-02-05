@@ -1,4 +1,4 @@
-.App {
+.sidebarDrawer{
     .companyTitleContainer {
         display: flex;
         align-items: center;
@@ -13,10 +13,5 @@
 
     .blackColor{
         color: black;
-    }
-
-    .mainContent{
-        flex-grow: 1;
-        padding: 24px;
     }
 }

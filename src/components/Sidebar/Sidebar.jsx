@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Drawer } from './Styled/Drawer';
-import { ListSectionButton } from './Styled/ListSectionButton';
+import { Drawer } from './styled/Drawer';
+import { ListSectionButton } from './styled/ListSectionButton';
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -16,6 +16,8 @@ import ringstonetechIcon from '../../assets/icons/ringstonetechIcon.png';
 
 import { useMediaQuery } from '@mui/material';
 
+import './Sidebar.scss';
+
 const Sidebar = () => {
     const [open, setOpen] = useState(false);
 
@@ -29,7 +31,7 @@ const Sidebar = () => {
         setOpen(false);
     };
 
-    return <Drawer variant="permanent" open={isTableOrBiger && open}>
+    return <Drawer className='sidebarDrawer' variant="permanent" open={isTableOrBiger && open}>
 
         <div className='companyTitleContainer'>
             <img src={ringstonetechIcon} alt="RingstoneTechIcon" width="56px" />
