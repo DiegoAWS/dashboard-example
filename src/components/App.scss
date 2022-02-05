@@ -1,0 +1,20 @@
+.App {
+    .companyTitleContainer {
+        display: flex;
+        align-items: center;
+
+        .companyTitle {
+            flex: 1;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+        }
+    }
+
+
+    .openIconContainer {
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 8px;
+    }
+}
