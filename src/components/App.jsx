@@ -1,24 +1,27 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
+
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+
 import ListIcon from '@mui/icons-material/List';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import AssessmentIcon from '@mui/icons-material/Assessment';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import ringstonetechIcon from '../assets/icons/ringstonetechIcon.png';
 
 import './App.scss';
+import { useMediaQuery } from '@mui/material';
+
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -36,10 +39,8 @@ const closedMixin = (theme) => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: 'hidden',
-  width: `calc(${theme.spacing(5)} + 1px)`,
-  [theme.breakpoints.up('sm')]: {
-    width: `calc(${theme.spacing(7)} + 1px)`,
-  },
+  minWidth: `calc(${theme.spacing(7)} + 1px)`,
+  maxWidth: `calc(${theme.spacing(7)} + 1px)`
 });
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -69,7 +70,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 export default function App() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+
+  const isTableOrBiger = useMediaQuery('(min-width:600px)');
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -83,7 +86,7 @@ export default function App() {
     <div className='App'>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <Drawer variant="permanent" open={open}>
+        <Drawer variant="permanent" open={isTableOrBiger && open}>
 
           <div className='companyTitleContainer'>
             <img src={ringstonetechIcon} alt="RingstoneTechIcon" width="56px" />
@@ -93,44 +96,48 @@ export default function App() {
             <List>
               <ListItem button>
                 <ListItemIcon>
-                  <ListIcon />
+                  <ListIcon color='secondary' />
                 </ListItemIcon>
-                <ListItemText primary={'List of Reports'} />
+                <ListItemText primary={'List of Services'} />
               </ListItem>
+
               <ListItem button>
                 <ListItemIcon>
-                  <ListIcon />
+                  <AssignmentIcon />
                 </ListItemIcon>
-                <ListItemText primary={'List of Reports'} />
+                <ListItemText primary={'Assignments'} />
+              </ListItem>
+
+              <ListItem button>
+                <ListItemIcon>
+                  <AssessmentIcon />
+                </ListItemIcon>
+                <ListItemText primary={'Reports'} />
+              </ListItem>
+
+              <ListItem button>
+                <ListItemIcon>
+                  <LightModeIcon />
+                </ListItemIcon>
+                <ListItemText primary={'Insights'} />
               </ListItem>
             </List>
-            <Divider />
-            <List>
-              {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                <ListItem button key={text}>
-                  <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItem>
-              ))}
-            </List>
-          </div>
-          <div className='openIconContainer'>
-            <IconButton onClick={() => {
-              if (open) {
-                handleDrawerClose();
-              } else {
-                handleDrawerOpen();
-              }
-            }}>
-              {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-            </IconButton>
           </div>
 
+          <ListItem button onClick={() => {
+            if (open) {
+              handleDrawerClose();
+            } else {
+              handleDrawerOpen();
+            }
+          }}>
+            <ListItemIcon >
 
+              <AccountCircleIcon />
 
-
+            </ListItemIcon>
+            <ListItemText primary={'Account'} />
+          </ListItem>
 
         </Drawer>
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
