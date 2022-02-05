@@ -1,4 +1,21 @@
 .SelectionUpperCardContainer{
+    display: flex;
+
+    .titleContainer{
+        flex-grow: 1;
+
+        .titleSection{
+            width: fit-content;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: normal;
+            padding: 0 8px;
+            border-right: 3px solid red;
+        }
+    }
     
-    
+    .downloadButton{
+        margin-left: 16px;
+        height: 100%;
+    }
 }

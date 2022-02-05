@@ -12,7 +12,7 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ringstonetechIcon from '../../assets/icons/ringstonetechIcon.png';
 
-import { useMediaQuery } from '@mui/material';
+import { useMediaQuery, useTheme } from '@mui/material';
 
 import './Sidebar.scss';
 import Drawer from '../Drawer/Drawer';
@@ -20,8 +20,9 @@ import ListSectionButton from '../ListSectionButton/ListSectionButton';
 
 const Sidebar = () => {
     const [open, setOpen] = useState(false);
+    const theme = useTheme();
 
-    const upTablet = useMediaQuery('(min-width:600px)');
+    const upTablet = useMediaQuery(`(min-width:${theme.breakpoints.values.sm}px)`);
 
     const handleDrawerOpen = () => {
         setOpen(true);
