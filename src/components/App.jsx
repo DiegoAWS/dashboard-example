@@ -8,7 +8,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 import Sidebar from './Sidebar/Sidebar';
 import { Box } from '@mui/material';
-import Report from './Report/Report';
+import Report from '../pages/Report';
 
 export default function App() {
 

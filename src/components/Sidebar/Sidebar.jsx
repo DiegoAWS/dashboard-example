@@ -15,65 +15,13 @@ import ringstonetechIcon from '../../assets/icons/ringstonetechIcon.png';
 import { useMediaQuery } from '@mui/material';
 
 import './Sidebar.scss';
-
-import { styled } from '@mui/material/styles';
-import MuiDrawer from '@mui/material/Drawer';
-
-const drawerWidth = 240;
-
-const openedMixin = (theme) => ({
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
-    }),
-    overflowX: 'hidden',
-});
-
-const closedMixin = (theme) => ({
-    transition: theme.transitions.create('width', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-    }),
-    overflowX: 'hidden',
-    width: theme.spacing(7)
-});
-
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-    ({ theme, open }) => ({
-        width: drawerWidth,
-        flexShrink: 0,
-        whiteSpace: 'nowrap',
-        boxSizing: 'border-box',
-        ...(open && {
-            ...openedMixin(theme),
-            '& .MuiDrawer-paper': openedMixin(theme),
-        }),
-        ...(!open && {
-            ...closedMixin(theme),
-            '& .MuiDrawer-paper': {
-                ...closedMixin(theme),
-                borderRight: 'none',
-            },
-        }),
-    }),
-);
-
-const ListSectionButton = styled(ListItem, { shouldForwardProp: (prop) => prop !== 'active' })(({ active, theme }) => ({
-    cursor: 'pointer',
-    backgroundColor: active ? '#f5f5f5' : '#fff',
-    paddingLeft: theme.spacing(1.5),
-    borderLeftWidth: theme.spacing(0.5),
-    borderLeftStyle: 'solid',
-    borderLeftColor: active ? 'black' : 'transparent',
-}));
-
-
+import Drawer from '../Drawer/Drawer';
+import ListSectionButton from '../ListSectionButton/ListSectionButton';
 
 const Sidebar = () => {
     const [open, setOpen] = useState(false);
 
-    const isTableOrBiger = useMediaQuery('(min-width:600px)');
+    const upTablet = useMediaQuery('(min-width:600px)');
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -83,7 +31,7 @@ const Sidebar = () => {
         setOpen(false);
     };
 
-    return <Drawer className='sidebarDrawer' variant="permanent" open={isTableOrBiger && open}>
+    return <Drawer className='sidebarDrawer' variant="permanent" open={upTablet && open}>
 
         <div className='companyTitleContainer'>
             <img src={ringstonetechIcon} alt="RingstoneTechIcon" width="56px" />
