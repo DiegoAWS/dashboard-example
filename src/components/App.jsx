@@ -9,11 +9,13 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Sidebar from './Sidebar/Sidebar';
 import { Box } from '@mui/material';
 import Report from '../pages/Report';
+import BaseImage from './BaseImage/BaseImage';
 
 export default function App() {
 
   return (
     <div className='App'>
+      <BaseImage />
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <Sidebar />
