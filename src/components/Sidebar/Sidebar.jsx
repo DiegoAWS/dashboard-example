@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { Drawer } from './styled/Drawer';
-import { ListSectionButton } from './styled/ListSectionButton';
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -17,6 +15,60 @@ import ringstonetechIcon from '../../assets/icons/ringstonetechIcon.png';
 import { useMediaQuery } from '@mui/material';
 
 import './Sidebar.scss';
+
+import { styled } from '@mui/material/styles';
+import MuiDrawer from '@mui/material/Drawer';
+
+const drawerWidth = 240;
+
+const openedMixin = (theme) => ({
+    width: drawerWidth,
+    transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+    }),
+    overflowX: 'hidden',
+});
+
+const closedMixin = (theme) => ({
+    transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+    }),
+    overflowX: 'hidden',
+    width: theme.spacing(7)
+});
+
+const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+    ({ theme, open }) => ({
+        width: drawerWidth,
+        flexShrink: 0,
+        whiteSpace: 'nowrap',
+        boxSizing: 'border-box',
+        ...(open && {
+            ...openedMixin(theme),
+            '& .MuiDrawer-paper': openedMixin(theme),
+        }),
+        ...(!open && {
+            ...closedMixin(theme),
+            '& .MuiDrawer-paper': {
+                ...closedMixin(theme),
+                borderRight: 'none',
+            },
+        }),
+    }),
+);
+
+const ListSectionButton = styled(ListItem, { shouldForwardProp: (prop) => prop !== 'active' })(({ active, theme }) => ({
+    cursor: 'pointer',
+    backgroundColor: active ? '#f5f5f5' : '#fff',
+    paddingLeft: theme.spacing(1.5),
+    borderLeftWidth: theme.spacing(0.5),
+    borderLeftStyle: 'solid',
+    borderLeftColor: active ? 'black' : 'transparent',
+}));
+
+
 
 const Sidebar = () => {
     const [open, setOpen] = useState(false);
