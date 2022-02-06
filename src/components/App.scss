@@ -1,8 +1,14 @@
-.App{
+.App {
     max-width: 1920px;
     margin: 0 auto;
-    
-    .drawerContainer{
+
+    .main {
+        flex-grow: 1;
+        padding: 24px;
+        overflow-y: hidden;
+    }
+
+    .drawerContainer {
         display: flex;
     }
 

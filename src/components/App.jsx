@@ -25,7 +25,7 @@ const App = () => {
         <Box className='drawerContainer'>
           <CssBaseline />
           <Sidebar />
-          <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          <Box component="main" className='main'>
             <Routes>
               {routes.map((route) =>
                 <Route
