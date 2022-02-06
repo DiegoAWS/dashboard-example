@@ -1,12 +1,9 @@
 import React from 'react';
 
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
-
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ringstonetechIcon from '../../assets/icons/ringstonetechIcon.png';
 
 import Drawer from '../Drawer/Drawer';
@@ -19,21 +16,14 @@ import { useLocation } from 'react-router-dom';
 import { useGlobalContext } from '../GlobalContext';
 
 import './Sidebar.scss';
+import UserSection from '../UserSection/UserSection';
 
 const Sidebar = () => {
- const { openSidebarState, setOpenSidebar} = useGlobalContext();
+    const { openSidebarState } = useGlobalContext();
 
     const location = useLocation();
 
     const currentRoute = '/' + location.pathname.split('/')[1];
-    
-    const handleDrawerOpen = () => {
-        setOpenSidebar(true);
-    };
-
-    const handleDrawerClose = () => {
-        setOpenSidebar(false);
-    };
 
     return <Drawer className='sidebarDrawer' variant="permanent" open={openSidebarState}>
         <BlackLink to='/' >
@@ -58,20 +48,7 @@ const Sidebar = () => {
             </List>
         </div>
 
-        <ListItem button onClick={() => {
-            if (openSidebarState) {
-                handleDrawerClose();
-            } else {
-                handleDrawerOpen();
-            }
-        }}>
-            <ListItemIcon >
-
-                <AccountCircleIcon className='blackColor' />
-
-            </ListItemIcon>
-            <ListItemText primary={'Account'} />
-        </ListItem>
+       <UserSection />
 
     </Drawer>
 }
