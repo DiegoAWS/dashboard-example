@@ -7,8 +7,9 @@
 }
 
 @media screen and (max-width: 500px) {
+
     .tablesContainer {
-        grid-template-columns: calc(100vw - 100px);
+        grid-template-columns: calc(100vw - 60px);
 
         .whiteCard {
             padding-left: 0;

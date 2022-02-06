@@ -5,11 +5,17 @@
     .main {
         flex-grow: 1;
         padding: 24px;
-        overflow-y: hidden;
+        overflow-x: hidden;
     }
 
     .drawerContainer {
         display: flex;
     }
+}
 
+@media screen and (max-width: 500px) {
+    .App .main {
+        padding: 24px 0px;
+        border-left: 1px solid #e0e0e0;
+    }
 }
