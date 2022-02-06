@@ -12,32 +12,39 @@ import Report from '../pages/Report/Report';
 
 import BaseImage from './BaseImage/BaseImage';
 import { routes } from './routes';
+import { GlobalContextProvider } from './GlobalContext';
 
-export default function App() {
+import './App.scss';
+
+const App = () => {
 
   return (
-    <div className='App'>
-      <BaseImage />
-      <Box sx={{ display: 'flex' }}>
-        <CssBaseline />
-        <Sidebar />
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <Routes>
-            {routes.map((route) =>
-              <Route
-                exact
-                key={route.url}
-                path={route.url}
-                element={<route.component title={route.title} {...(route.props || {})} />}
-              />
-            )}
+    <GlobalContextProvider>
+      <div className='App'>
+        <BaseImage />
+        <Box className='drawerContainer'>
+          <CssBaseline />
+          <Sidebar />
+          <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+            <Routes>
+              {routes.map((route) =>
+                <Route
+                  exact
+                  key={route.url}
+                  path={route.url}
+                  element={<route.component title={route.title} {...(route.props || {})} />}
+                />
+              )}
 
-            <Route exact path="/report/:id" element={<Report />} />
-            <Route path="*" element={<Navigate to="/report/1" />} />
-          </Routes>
+              <Route exact path="/report/:id" element={<Report />} />
+              <Route path="*" element={<Navigate to="/report/1" />} />
+            </Routes>
 
+          </Box>
         </Box>
-      </Box>
-    </div>
+      </div>
+    </GlobalContextProvider>
   );
 }
+
+export default App;

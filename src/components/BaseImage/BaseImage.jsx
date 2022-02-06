@@ -4,16 +4,20 @@ import imageBase from '../../assets/images/baseImage.jpg';
 import './BaseImage.scss';
 
 function BaseImage() {
-    const [preview, setPreview] = useState(true);
+    const [preview, setPreview] = useState(false);
 
     useEffect(() => {
         setTimeout(() => {
-            setPreview(false)
+            if (preview) {
+                setPreview(false)
+            }
         }, 2000)
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const handleChange=()=>{
-        setPreview(oldState=>!oldState)
+    const handleChange = () => {
+        setPreview(oldState => !oldState)
     }
 
     return <div className={`baseImageContainer ${preview ? 'previewSection' : ''}`}>

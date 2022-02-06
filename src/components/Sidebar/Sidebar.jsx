@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -9,9 +9,6 @@ import ListItemText from '@mui/material/ListItemText';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ringstonetechIcon from '../../assets/icons/ringstonetechIcon.png';
 
-import { useMediaQuery, useTheme } from '@mui/material';
-
-import './Sidebar.scss';
 import Drawer from '../Drawer/Drawer';
 import ListSectionButton from '../ListSectionButton/ListSectionButton';
 
@@ -19,26 +16,26 @@ import ListSectionButton from '../ListSectionButton/ListSectionButton';
 import { routes } from '../routes';
 import BlackLink from '../BlackLink/BlackLink';
 import { useLocation } from 'react-router-dom';
+import { useGlobalContext } from '../GlobalContext';
+
+import './Sidebar.scss';
 
 const Sidebar = () => {
-    const [open, setOpen] = useState(false);
-    const theme = useTheme();
-
-    const upTablet = useMediaQuery(`(min-width:${theme.breakpoints.values.sm}px)`);
+ const { openSidebarState, setOpenSidebar} = useGlobalContext();
 
     const location = useLocation();
 
     const currentRoute = '/' + location.pathname.split('/')[1];
     
     const handleDrawerOpen = () => {
-        setOpen(true);
+        setOpenSidebar(true);
     };
 
     const handleDrawerClose = () => {
-        setOpen(false);
+        setOpenSidebar(false);
     };
 
-    return <Drawer className='sidebarDrawer' variant="permanent" open={upTablet && open}>
+    return <Drawer className='sidebarDrawer' variant="permanent" open={openSidebarState}>
         <BlackLink to='/' >
             <div className='companyTitleContainer'>
                 <img src={ringstonetechIcon} alt="RingstoneTechIcon" width="56px" />
@@ -62,7 +59,7 @@ const Sidebar = () => {
         </div>
 
         <ListItem button onClick={() => {
-            if (open) {
+            if (openSidebarState) {
                 handleDrawerClose();
             } else {
                 handleDrawerOpen();
