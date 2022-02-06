@@ -1,15 +1,28 @@
 .tablesContainer {
     display: grid;
-    grid-column-gap: 24px;
-    grid-template-columns: 1fr;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(400px, max-content));
     margin-top: 24px;
-    
+
 }
 
+@media screen and (max-width: 500px) {
+    .tablesContainer {
+        grid-template-columns: calc(100vw - 100px);
 
+        .whiteCard {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .mainTableContainer .roadMapContainer {
+            padding: 0;
+        }
+    }
+}
 
 @media screen and (min-width: 1400px) {
-    .tablesContainer  {
-        grid-template-columns: auto 380px;
+    .tablesContainer {
+        grid-template-columns: auto 300px;
     }
 }

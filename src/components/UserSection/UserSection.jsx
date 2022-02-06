@@ -10,7 +10,7 @@ import './UserSection.scss'
 
 function UserSection() {
     const [anchorEl, setAnchorEl] = useState(null);
-    const { openSidebarState, setOpenSidebar } = useGlobalContext();
+    const { openSidebarState, upTablet, setOpenSidebar } = useGlobalContext();
 
     const open = Boolean(anchorEl);
 
@@ -46,13 +46,13 @@ function UserSection() {
                 horizontal: 'left',
             }}
         >
-            <MenuItem className='noCursorPointer'>
+            {upTablet && <MenuItem className='noCursorPointer'>
                 <ListItemIcon>
                     <SettingsIcon />
                 </ListItemIcon>
                 Small Sidebar
                 <Switch value={!openSidebarState} onChange={toggleSidebar} />
-            </MenuItem>
+            </MenuItem>}
             <MenuItem disabled>
                 <ListItemIcon>
                     <ManageAccountsIcon />

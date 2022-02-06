@@ -37,9 +37,9 @@ const SelectionUpperCard = () => {
         setAnchorEl(null);
     };
 
-const donwloadButtonClick = () => {
-    console.log('download')
-}
+    const donwloadButtonClick = () => {
+        closeMenu();
+    }
     return <WhiteCard className='SelectionUpperCardContainer'>
         <div className='titleContainer'>
             <div className='titleSection'>State</div>
@@ -91,7 +91,7 @@ const donwloadButtonClick = () => {
 
                         <Divider />
                         <MenuItem onClick={donwloadButtonClick}>
-                            <DownloadIcon color='info'/>
+                            <DownloadIcon color='info' />
                             Download
                         </MenuItem>
                     </Menu>

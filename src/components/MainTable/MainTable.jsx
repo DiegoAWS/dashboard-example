@@ -14,7 +14,7 @@ const MainTable = () => {
   };
 
   return <div className='mainTableContainer'>
-    <WhiteCard >
+    <WhiteCard className='whiteCard'>
       <div className='tabsContainer'>
 
         <Tabs
@@ -37,12 +37,12 @@ const MainTable = () => {
               {activeTab === index && (
                 activeTab === 0
                   ? (
-                    <Box sx={{ p: 3 }}>
+                    <Box className='roadMapContainer'>
                       <Roadmap />
                     </Box>
                   )
                   : (
-                    <Box sx={{ p: 3 }}>
+                    <Box className='roadMapContainer'>
                       <Typography>- {tab}</Typography>
                     </Box>
                   )

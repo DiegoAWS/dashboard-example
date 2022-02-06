@@ -9,12 +9,13 @@ const GlobalContextProvider = (props) => {
 
   const theme = useTheme();
 
-  const upTablet = useMediaQuery(`(min-width:${theme.breakpoints.values.sm}px)`);
+  const upTablet = useMediaQuery(`(min-width:${theme.breakpoints.values.md}px)`);
 
   const openSidebarState = upTablet && openSidebar;
 
   const instanceContext = {
     openSidebarState,
+    upTablet,
     setOpenSidebar
   };
 
