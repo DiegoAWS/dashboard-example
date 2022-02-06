@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -6,19 +6,30 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { styled } from '@mui/material/styles';
-import { Box } from '@mui/material';
+import { Box, ButtonGroup } from '@mui/material';
+import ToggleButton from '../../ToggleButton/ToggleButton';
+import SmallSlider from '../../SmallSlider/SmallSlider';
 
-function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs };
+function createData(name, influence, currentState, futureState) {
+    return { name, influence, currentState, futureState };
 }
 
 const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
+    createData('Healthy Use Of Metrics And Data To Drive Decisions For Product Planning', 3, 2, 4),
+    createData('Roadmap Tools Usage Efficiency(E.g. Aha!)', 1, 1, 3),
+    createData('Swot Awareness And Competitive Awareness', 3, 4, 2),
+    createData('Configuration Mindset Vs Customizations', 2, 0, 0),
+    createData('Tech Debt % Allocation / Investment Health', 2, 2, 5),
+    createData('New Features % Allocation / Investment Health', 3, 1, 4),
+    createData('Data-driven Decision Making', 3, 2, 0),
+    createData('CooEffectiveness/role/ownership', 2, 0, 0),
+    createData('Collaboration Health Between Product/engineering', 2, 0, 0),
+    createData('Agility And Prioritization Mechanics', 3, 0, 0),
+
 ];
+
+const BUTTONS_INFLUENCE = ['-', 'S', 'M', 'L'];
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -55,6 +66,20 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 const Roadmap = () => {
+
+    const [data, setData] = useState({
+        influence: rows.map(item => item.influence),
+        currentState: rows.map(item => item.currentState),
+        futureState: rows.map(item => item.futureState),
+    });
+
+    const updateData = (key, value, rowIndex) => {
+        setData( prevState => ({
+            ...prevState,
+            [key]: prevState[key].map((item, i) => i === rowIndex ? value : item)
+        }));
+    };
+
     return (
         <TableContainer component={Box}>
             <Table>
@@ -67,14 +92,37 @@ const Roadmap = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {rows.map((row, rowIndex) => (
                         <StyledTableRow key={row.name}>
                             <StyledTableCell component="th" scope="row">
                                 {row.name}
                             </StyledTableCell>
-                            <StyledTableCell>{row.calories}</StyledTableCell>
-                            <StyledTableCell>{row.fat}</StyledTableCell>
-                            <StyledTableCell>{row.carbs}</StyledTableCell>
+                            <StyledTableCell>
+                                <ButtonGroup variant="outlined">
+                                    {BUTTONS_INFLUENCE.map((button, index) =>
+                                        <ToggleButton
+                                            key={index}
+                                            active={data.influence[rowIndex] === index}
+                                            onClick={() => updateData('influence', index, rowIndex)}
+                                        >
+                                            {button}
+                                        </ToggleButton>
+                                    )}
+                                </ButtonGroup>
+                            </StyledTableCell>
+                            <StyledTableCell>
+                                <SmallSlider
+                                    value={data.currentState[rowIndex]}
+                                    onChange={(event, value) => updateData('currentState', value, rowIndex)}
+                                />
+
+                            </StyledTableCell>
+                            <StyledTableCell>
+                            <SmallSlider
+                                    value={data.futureState[rowIndex]}
+                                    onChange={(event, value) => updateData('futureState', value, rowIndex)}
+                                />
+                            </StyledTableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>

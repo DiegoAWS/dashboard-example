@@ -17,17 +17,20 @@
         height: 100%;
         object-fit: contain;
     }
+}
 
-    .togglerContainer {
-        position: absolute;
-        right: 10px;
-        bottom: 10px;
-        border: 2px solid black;
-        height: 50px;
-        width: 50px;
-        border-radius: 5px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.togglerContainer {
+    position: fixed;
+    z-index: 1201;
+    right: 10px;
+    bottom: 10px;
+    border: 2px solid black;
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  
 }

@@ -1,6 +1,7 @@
 import { Switch } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import imageBase from '../../assets/images/baseImage.jpg';
+import Portal from '@mui/base/Portal';
 import './BaseImage.scss';
 
 function BaseImage() {
@@ -12,8 +13,8 @@ function BaseImage() {
                 setPreview(false)
             }
         }, 2000)
-        
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const handleChange = () => {
@@ -22,12 +23,14 @@ function BaseImage() {
 
     return <div className={`baseImageContainer ${preview ? 'previewSection' : ''}`}>
         {preview && <img src={imageBase} alt='base design' />}
-        <div className='togglerContainer'>
-            <Switch
-                checked={!preview}
-                onChange={handleChange}
-            />
-        </div>
+        <Portal>
+            <div className='togglerContainer'>
+                <Switch
+                    checked={preview}
+                    onChange={handleChange}
+                />
+            </div>
+        </Portal>
     </div>;
 }
 
