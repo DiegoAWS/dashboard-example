@@ -4,17 +4,7 @@ import WhiteCard from '../WhiteCard/WhiteCard';
 
 import './MainTable.scss';
 import Roadmap from './Roadmap/Roadmap';
-
-const tabsList = [
-  'ROADMAP & STRATEGY',
-  'ORGANIZATION & TEAM',
-  'ARCHITECTURE & CODE',
-  'PRODUCT IT INFRATRUSCTURE',
-  'SDLC. Qality & TOOLS',
-  'CUSTUMER SUPORT',
-  'PROFESIONAL SERVICES',
-  'PORTFOLIO STRATEGY'
-]
+import { tabsList } from '../../utils/const';
 
 const MainTable = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -34,7 +24,7 @@ const MainTable = () => {
           onChange={handleChange}
         >
           {tabsList.map((tab, index) =>
-            <Tab key={index} label={tab} wrapped className='tabsButton'/>
+            <Tab key={index} label={tab.toUpperCase()} wrapped className='tabsButton'/>
           )}
         </Tabs>
         <>
@@ -53,7 +43,7 @@ const MainTable = () => {
                   )
                   : (
                     <Box sx={{ p: 3 }}>
-                      <Typography>{index}-{tab}</Typography>
+                      <Typography>- {tab}</Typography>
                     </Box>
                   )
               )}

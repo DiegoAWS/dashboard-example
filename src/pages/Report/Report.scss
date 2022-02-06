@@ -4,23 +4,11 @@
     grid-template-columns: repeat(auto-fit, minmax(600px, max-content));
     margin-top: 24px;
     
-
-    // .mainTableContainer {
-    //     border: 1px dashed blue;
-
-    // }
-
-    .rightTable {
-
-        background-color: white;
-        border-radius: 4px;
-        padding: 24px;
-    }
 }
 
 @media screen and (min-width: 1400px) {
     .tablesContainer  {
-        grid-template-columns: auto 350px;
+        grid-template-columns: auto 500px;
     }
 
     

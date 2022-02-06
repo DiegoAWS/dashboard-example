@@ -1,66 +1,39 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import { Slider, SliderThumb } from '@mui/material';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import { Slider } from '@mui/material';
+import ArrowColored from '../ArrowColored/ArrowColored';
 
-const COLORS_BUTTON = [
-    '#ffffff',
-    '#e85443',
-    '#f3a93b',
-    '#f9d849',
-    '#a7eb99',
-    '#377d23'
-]
-const DEGREES_ARROWS = ['0', '0', '45', '90', '135', '180'];
-
-const CustomSlider = styled(Slider)(
-    ({ value }) =>
-    ({
-
-        height: 2,
-        '& .MuiSlider-thumb': {
-            height: 24,
-            width: 24,
-            backgroundColor: COLORS_BUTTON[value],
-
-            border: `1px solid ${value === 0 ? '#000000' : COLORS_BUTTON[value]}`,
-
-            '& .arrowIcon': {
-                transform: `rotate(-${DEGREES_ARROWS[value]}deg)`
-            },
-
-            '& .MuiSlider-rail': {
-                backgroundColor: 'gray',
-                border: 'none'
-            },
-            '& .MuiSlider-track': {
-                backgroundColor: 'black',
-                border: 'none'
-            },
-
-            '&:focus, &:hover, &.Mui-active, &.Mui-focusVisible': {
-                boxShadow: 'inherit',
-            },
-            '&:before': {
-                display: 'none',
-            },
+const CustomSlider = styled(Slider)({
+    height: 2,
+    '& .MuiSlider-thumb': {
+        display: 'flex',
+        position: 'relative',
+        top: '50%',
+        transform: 'translate(-50%, -50%)',
+        
+        '& .MuiSlider-rail': {
+            backgroundColor: 'gray',
+            border: 'none'
         },
-    }));
+        '& .MuiSlider-track': {
+            backgroundColor: 'black',
+            border: 'none'
+        },
 
-const CustomThumb = ({ children, ...other }) => {
+        '&:focus, &:hover, &.Mui-active, &.Mui-focusVisible': {
+            boxShadow: 'inherit',
+        },
+        '&:before': {
+            display: 'none',
+        },
+    },
+});
 
-    return (
-        <SliderThumb {...other}>
-            {children}
-            <ArrowDownwardIcon className='arrowIcon' htmlColor='white' />
-        </SliderThumb>
-    );
-}
 
 const SmallSlider = ({ value, onChange }) => {
 
     return <CustomSlider
-        components={{ Thumb: CustomThumb }}
+        components={{ Thumb: ArrowColored }}
         value={value}
         onChange={onChange}
         step={1}
