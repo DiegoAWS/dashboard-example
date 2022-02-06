@@ -5,7 +5,7 @@ import Portal from '@mui/base/Portal';
 import './BaseImage.scss';
 
 function BaseImage() {
-    const [preview, setPreview] = useState(false);
+    const [preview, setPreview] = useState(true);
 
     useEffect(() => {
         setTimeout(() => {
